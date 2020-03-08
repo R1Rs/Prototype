@@ -1,47 +1,16 @@
-import destructuring from "../src/add";
+import Character from "../src/add";
 
-test ("test destructur", () => {
-  const hero = {
-    name: "Лучник",
-    type: "Bowman",
-    health: 50,
-    level: 3,
-    attack: 40,
-    defence: 10,
-    special: [
-      {
-        id: 8,
-        name: "Двойной выстрел",
-        icon: "http://...",
-        description: "Двойной выстрел наносит двойной урон"
-      },
-      {
-        id: 9,
-        name: "Нокаутирующий удар",
-        icon: "http://..."
-        // <- обратите внимание, описание "засекречено"
-      }
-    ]
-  };
+test ("test charcter", () => {
+  let petr = new Character("petr", "Bowman");
+  const received = petr.attack;
+  const expected = 25;
 
-  const received = destructuring(hero);
-
-  const expected = [
-    {
-      id: 8,
-      name: "Двойной выстрел",
-      icon: "http://...",
-      description: "Двойной выстрел наносит двойной урон"
-    },
-    {
-      id: 9,
-      name: "Нокаутирующий удар",
-      icon: "http://...",
-      description: "Описание недоступно"
-    }
-  ];
+  let retr = new Character("r", "aaa");
+  const received1 = Error;
+  const expected1 = Error;
 
     expect(received).toEqual(expected);
+    expect(received1).toEqual(expected1);
 })
 
 

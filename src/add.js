@@ -1,34 +1,42 @@
-export default destructuring;
+export default Character;
 
-let hero = {
-  name: "Лучник",
-  type: "Bowman",
-  health: 50,
-  level: 3,
-  attack: 40,
-  defence: 10,
-  special: [
-    {
-      id: 8,
-      name: "Двойной выстрел",
-      icon: "http://...",
-      description: "Двойной выстрел наносит двойной урон"
+function Character(name, type) {
+  let types = {
+    Bowman: {
+      attack: 25,
+      defense: 25
     },
-    {
-      id: 9,
-      name: "Нокаутирующий удар",
-      icon: "http://..."
-      // <- обратите внимание, описание "засекречено"
+    Swordsman: {
+      attack: 40,
+      defense: 10
+    },
+    Magician: {
+      attack: 10,
+      defense: 40
+    },
+    Daemon: {
+      attack: 25,
+      defense: 25
+    },
+    Undead: {
+      attack: 40,
+      defense: 10
+    },
+    Zombie: {
+      attack: 10,
+      defense: 40
     }
-  ]
-};
+  }
 
-function destructuring (object) {
-  let {special} = object;
-  return special.map(el => {
-    let {id, name, icon, description = "Описание недоступно"} = el;
-    return {id, name, icon, description};
-  }) 
+  if ((typeof(name) != "string") || (name.length < 2) || (name.length > 10) || (!Object.keys(types).includes(type))) {
+    throw new Error ("введены некорректные данные");
+  }
+
+  this.name = name;
+  this.type = type;
+  this.health = 100;
+  this.level = 1;
+  this.attack = types[type].attack;
+  this.defense = types[type].defense;
 }
 
-destructuring(hero)
